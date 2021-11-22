@@ -1,0 +1,65 @@
+{
+    "catalogs": [
+      {
+        "id": 1,
+        "name": "Adidas"
+      }
+    ],
+    "prosucts": [
+      {
+        "id": 1,
+        "name": "Kim Jisoo",
+        "price": 800,
+        "urlImg": "./images/home/imgIT1.jpg",
+        "describe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus atque, aspernatur excepturi numquam voluptatem cupiditate. Accusamus quisquam harum corporis id vel perspiciatis! Laudantium perspiciatis saepe, doloribus necessitatibus alias perferendis vitae.",
+        "idCata": 1,
+        "productNew":0,
+        "productHot":1,
+        "View":0
+      },
+      {
+        "id": 2,
+        "name": "Kim Jisoo",
+        "price": 800,
+        "urlImg": "./images/home/imgIT1.jpg",
+        "describe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus atque, aspernatur excepturi numquam voluptatem cupiditate. Accusamus quisquam harum corporis id vel perspiciatis! Laudantium perspiciatis saepe, doloribus necessitatibus alias perferendis vitae.",
+        "idCata": 1,
+        "productNew":0,
+        "productHot":1, 
+        "View":0
+      },
+      {
+        "id": 3,
+        "name": "Kim Jisoo",
+        "price": 800,
+        "urlImg": "./images/home/imgIT1.jpg",
+        "describe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus atque, aspernatur excepturi numquam voluptatem cupiditate. Accusamus quisquam harum corporis id vel perspiciatis! Laudantium perspiciatis saepe, doloribus necessitatibus alias perferendis vitae.",
+        "idCata": 1,
+        "productNew":0,
+        "productHot":1,
+        "View":0
+      },
+      {
+        "id": 4,
+        "name": "Kim Jisoo",
+        "price": 800,
+        "urlImg": "./images/home/imgIT1.jpg",
+        "describe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus atque, aspernatur excepturi numquam voluptatem cupiditate. Accusamus quisquam harum corporis id vel perspiciatis! Laudantium perspiciatis saepe, doloribus necessitatibus alias perferendis vitae.",
+        "idCata": 1,
+        "productNew":0,
+        "productHot":1,
+        "View":0
+      },
+      {
+        "id": 5,
+        "name": "Kim Jisoo",
+        "price": 800,
+        "urlImg": "./images/home/imgIT1.jpg",
+        "describe":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus atque, aspernatur excepturi numquam voluptatem cupiditate. Accusamus quisquam harum corporis id vel perspiciatis! Laudantium perspiciatis saepe, doloribus necessitatibus alias perferendis vitae.",
+        "idCata": 1,
+        "productNew":0,
+        "productHot":1,
+        "View":0
+      }
+    ]
+  }
