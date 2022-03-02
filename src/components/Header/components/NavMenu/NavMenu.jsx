@@ -51,7 +51,6 @@ const NavMenu=(props)=>{
                     <li><Link to="/cata/2">Đồ Nam</Link></li>
                     <li><Link to="/cata/3">Túi Xách</Link></li>
                     <li><Link to="/cata/4">Giày</Link></li>  
-                    <li><Link to="/baoCao">Báo Cáo</Link></li>  
                 </ul>
 
                 <div className="cart"  onClick={handleClickCart}>

@@ -57,10 +57,6 @@ function App() {
           <Products changedBackground={navbar}></Products>
         </Route>
 
-        <Route path="/baoCao">
-          <BaoCao changedBackground={navbar}></BaoCao>
-        </Route>
-
         <Route exact path="/admin">
           <IndexAD></IndexAD>
         </Route>
