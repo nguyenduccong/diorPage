@@ -80,7 +80,7 @@ const Cart =(props)=>{
 
                             <td>
                                 <h5 onClick={()=>remove(item.id)}>
-                                    <i class="fal fa-times"></i>
+                                    <i  className="fal fa-times"></i>
                                 </h5>
                             </td>
                         </tr>

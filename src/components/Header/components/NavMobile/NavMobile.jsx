@@ -6,7 +6,7 @@ const NavMobile = (props)=>{
     console.log(props.show);
     return(
         <BoxContent className={props.show?"active":""}>
-            <CloseTag onClick={props.handleClickNavMB}><i class="fas fa-times"></i></CloseTag>
+            <CloseTag onClick={props.handleClickNavMB}><i  className="fas fa-times"></i></CloseTag>
         </BoxContent>
     );
 }

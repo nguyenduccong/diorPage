@@ -1,124 +1,82 @@
+import { Skeleton } from '@material-ui/lab';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 import styled from 'styled-components';
 import prouctApi from '../../api/productApi';
 import Header from '../../components/Header/Header';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import RelatedProduct from './components/RelatedProduct/RelatedProduct';
 import Loadding from '../../components/Loadding/Loadding';
-import { Skeleton } from '@material-ui/lab';
-import { useDispatch } from 'react-redux';
 import { addtoCart } from '../Cart/cartSlide';
+import RelatedProduct from './components/RelatedProduct/RelatedProduct';
 
 
 
-const Detail = (props)=>{
+const Detail = (props) => {
     const math = useRouteMatch();
     const id = math.params.id;
-    console.log(math.params.id);
     const [detail, setdetail] = useState({});
     const [count, setcount] = useState(1);
     const match = useRouteMatch();
-    const [user, Setuser] = React.useState(null);
     const [ListCmt, Setcmt] = React.useState([]);
 
     const dispatch = useDispatch()
 
 
     const ClickAugment = () => {
-        setcount(count+1);
-      }
-    
-      const ClickReduce = () => {
-        setcount(count-1);
-      }
+        setcount(count + 1);
+    }
 
-      const refname = useRef('')
-      const refContent = useRef('')
-     
+    const ClickReduce = () => {
+        setcount(count - 1);
+    }
 
-      const handleForm = async()=>{
-        const dataCmt={};
-        console.log(match);
-        dataCmt.name=(refname.current.value);
-        dataCmt.imgUser=user.imageUrl;
-        dataCmt.idProduct=match.params.id;
-        dataCmt.content=(refContent.current.value);
-        console.log(dataCmt);
-    
-        const url="https://60fa72f27ae59c001716613f.mockapi.io/api/Comment";
-         await fetch(url, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
-          headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-          body: JSON.stringify(dataCmt) // body data type must match "Content-Type" header
-        });
+    const handleAlert = () => {
+        alert("Chức năng sẽ phát triển sau, xin lỗi về sự bất tiện này !")
+    }
 
-        window.location=`/product/${match.params.id}`
-     }
-
-     const handleAlert =() =>{
-        alert("Vui lòng đăng nhập! ")
-      }
-    
-    
     useEffect(() => {
 
-        const storage = localStorage.getItem('user');
-
-        if(storage){
-            Setuser(JSON.parse(storage))
-        }else{
-            localStorage.setItem('user', null);
-        }
-
-        const fetchDetail = async()=>{
+        const fetchDetail = async () => {
             const res = await prouctApi.GetProductsById(id);
             setdetail(res);
         }
 
         fetchDetail();
 
-        const url="https://60fa72f27ae59c001716613f.mockapi.io/api/Comment";
+        const url = "https://60fa72f27ae59c001716613f.mockapi.io/api/Comment";
 
-        const fetchCmt = async()=>{
-          const res = await fetch(url);
-          const data = await res.json();
-          const datacmt = await data.filter(item=>item.idProduct==match.params.id);
-          Setcmt(datacmt);
+        const fetchCmt = async () => {
+            const res = await fetch(url);
+            const data = await res.json();
+            const datacmt = await data.filter(item => item.idProduct == match.params.id);
+            Setcmt(datacmt);
         }
-  
-        fetchCmt();
-    },[id])
 
-    const handleAddtocart =()=>{
-        console.log("SubmitCart",detail);
+        fetchCmt();
+    }, [id])
+
+    const handleAddtocart = () => {
+        console.log("SubmitCart", detail);
         const action = addtoCart({
-            id:detail.id,
-            product:detail,
-            quantity:count
+            id: detail.id,
+            product: detail,
+            quantity: count
         });
         console.log(action);
         dispatch(action)
     }
 
-    return(
+    return (
         <BoxContent>
             <Header narbar={props.changedBackground}></Header>
 
             <Title>
-                    <div className="container">
-                        <h3>product details</h3>
-                    </div> 
-                </Title>
+                <div className="container">
+                    <h3>product details</h3>
+                </div>
+            </Title>
 
             <div className="container">
 
@@ -131,36 +89,36 @@ const Detail = (props)=>{
                     :
 
                     <BoxProduct>
-                    <ImgProduct>
-                        <img src={`../images/home/${detail.urlImg}`} alt="" />
-                    </ImgProduct>
+                        <ImgProduct>
+                            <img src={`../images/home/${detail.urlImg}`} alt="" />
+                        </ImgProduct>
 
-                    <ContentProduct>                       
-                    <div className="content">
-                            <h4>{detail.name}</h4>
-                            <div className="description">{detail.subtitle}</div>
-                            <span className="price">{detail.price.toLocaleString('vi', {style : 'currency', currency : 'VND'})}</span> 
-                            <div className="description">{detail.describe}</div>
+                        <ContentProduct>
+                            <div className="content">
+                                <h4>{detail.name}</h4>
+                                <div className="description">{detail.subtitle}</div>
+                                <span className="price">{detail.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
+                                <div className="description">{detail.describe}</div>
 
-                            <BoxCart>
-                                <div className="boxAmount">
-                                    { count === 1?
-                                        <span className="click disabled"><i class="fas fa-minus"></i></span>
-                                        :
-                                        <span onClick={ClickReduce} className="click"><i class="fas fa-minus"></i></span>
-                                    }
-                                    <span>{count}</span>
-                                    <span onClick={ClickAugment}  className="click"><i class="fas fa-plus"></i></span>
-                                </div>
+                                <BoxCart>
+                                    <div className="boxAmount">
+                                        {count === 1 ?
+                                            <span className="click disabled"><i className="fas fa-minus"></i></span>
+                                            :
+                                            <span onClick={ClickReduce} className="click"><i className="fas fa-minus"></i></span>
+                                        }
+                                        <span>{count}</span>
+                                        <span onClick={ClickAugment} className="click"><i className="fas fa-plus"></i></span>
+                                    </div>
 
-                                <div className="boxAddCart" onClick={handleAddtocart}>
-                                    Thêm Vào Giỏ Hàng
-                                </div>
+                                    <div className="boxAddCart" onClick={handleAddtocart}>
+                                        Thêm Vào Giỏ Hàng
+                                    </div>
 
-                            </BoxCart>
-                        </div>
-                    </ContentProduct>
-                </BoxProduct>
+                                </BoxCart>
+                            </div>
+                        </ContentProduct>
+                    </BoxProduct>
 
                 }
 
@@ -168,8 +126,8 @@ const Detail = (props)=>{
 
                 <Tabs>
                     <TabList>
-                    <Tab>Mô Tả Sản Phẩm</Tab>
-                    <Tab>Đánh Giá Sản Phẩm</Tab>
+                        <Tab>Mô Tả Sản Phẩm</Tab>
+                        <Tab>Đánh Giá Sản Phẩm</Tab>
                     </TabList>
 
                     <TabPanel>
@@ -177,68 +135,53 @@ const Detail = (props)=>{
                     </TabPanel>
                     <TabPanel>
                         <BoxComent>
-                        
-                            <div className="listCmt">
-                                {ListCmt.length ===0?
-                                    <div className="itemCmt">
-                                    <div className="img">
-                                        <Skeleton variant="rect" width={150} height={150} />
 
-                                    </div>
-                                    <div className="contentCmt">
-                                    <div className="name"><Skeleton variant="text" /></div>
-                                        <p>
-                                            <Skeleton variant="rect" width={550} height={100} />
-                                        </p>
-                                    </div>
-                                </div>
-                                    :
-                                    ListCmt.map((item)=>(
-                                        <div className="itemCmt">
+                            <div className="listCmt">
+                                {ListCmt.length === 0 ?
+                                    <div className="itemCmt">
                                         <div className="img">
-                                            <img src={`${item.imgUser}`} alt="" />
+                                            <Skeleton variant="rect" width={150} height={150} />
+
                                         </div>
                                         <div className="contentCmt">
-                                        <div className="name">{item.name}</div>
-                                            <p>{item.content}</p>
+                                            <div className="name"><Skeleton variant="text" /></div>
+                                            <p>
+                                                <Skeleton variant="rect" width={550} height={100} />
+                                            </p>
                                         </div>
                                     </div>
+                                    :
+                                    ListCmt.map((item) => (
+                                        <div className="itemCmt">
+                                            <div className="img">
+                                                <img src={`${item.imgUser}`} alt="" />
+                                            </div>
+                                            <div className="contentCmt">
+                                                <div className="name">{item.name}</div>
+                                                <p>{item.content}</p>
+                                            </div>
+                                        </div>
                                     ))
                                 }
                             </div>
 
                             <h1>Đánh Giá Của Bạn</h1>
-                            {user ===null ?
+
                             <div className="formCmt">
-                            <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Tên</label>
-                                <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên" />
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputEmail1">Tên</label>
+                                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên" />
+                                </div>
+
+                                <div className="mb-3">
+                                    <label htmlFor="exampleFormControlTextarea1" className="form-label">Nội Dung</label>
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
+                                </div>
+
+                                <div className="btn" onClick={handleAlert}>Gửi</div>
+
                             </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Nội Dung</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""}  />
-                            </div>
-
-                            <div className="btn" onClick={handleAlert}>Gửi</div>
-                                                     
-                        </div>
-                        :
-                            <div className="formCmt">
-                            <div className="form-group">
-                                <label htmlFor="exampleInputEmail1">Tên</label>
-                                <input type="text" className="form-control" value={`${user.name}`} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên" ref={refname}/>
-                            </div>
-
-                            <div className="mb-3">
-                                <label htmlFor="exampleFormControlTextarea1" className="form-label">Nội Dung</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} ref={refContent} />
-                            </div>
-
-                            <div className="btn" onClick={handleForm}>Gửi</div>
-                                                    
-                        </div>    
-                        }
                         </BoxComent>
                     </TabPanel>
                 </Tabs>
@@ -246,7 +189,7 @@ const Detail = (props)=>{
 
                 <RelatedProduct></RelatedProduct>
             </div>
-            
+
         </BoxContent>
     );
 }
@@ -391,7 +334,7 @@ const BoxCart = styled.div`
         }
 `
 
-const BoxComent= styled.div`
+const BoxComent = styled.div`
     .listCmt{
         width: 100%;
         padding: 2rem 0;

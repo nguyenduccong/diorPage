@@ -68,9 +68,9 @@ const ItemProduct =(props)=>{
                 <BoxImg>
                 <Link to={`/product/${props.id}`}><img src={props.img} alt="" /></Link>
                 <BostList className="showSP">
-                    <div className="item" onClick={handleClickWishlist}>{wishlist ?<i class="fas fa-heart red"></i>:<i class="far fa-heart"></i>}</div>
-                    <div className="item"onClick={() => Addcart(props.sp,1)}><i class="fas fa-cart-plus"></i></div>
-                    <div className="item" onClick={handleOpen}><i class="far fa-eye"></i></div>
+                    <div className="item" onClick={handleClickWishlist}>{wishlist ?<i  className="fas fa-heart red"></i>:<i  className="far fa-heart"></i>}</div>
+                    <div className="item"onClick={() => Addcart(props.sp,1)}><i  className="fas fa-cart-plus"></i></div>
+                    <div className="item" onClick={handleOpen}><i  className="far fa-eye"></i></div>
                 </BostList>
             </BoxImg>
             {/* } */}
@@ -99,7 +99,7 @@ const ItemProduct =(props)=>{
 
                     <ContentPreview>
                         <div className="close" onClick={handleClose}>
-                            <i class="fal fa-times"></i>
+                            <i  className="fal fa-times"></i>
                         </div>
 
                         <div className="content">
@@ -110,12 +110,12 @@ const ItemProduct =(props)=>{
                             <BoxCart>
                                 <div className="boxAmount">
                                     { count === 1?
-                                        <span className="click disabled"><i class="fas fa-minus"></i></span>
+                                        <span className="click disabled"><i  className="fas fa-minus"></i></span>
                                         :
-                                        <span onClick={ClickReduce} className="click"><i class="fas fa-minus"></i></span>
+                                        <span onClick={ClickReduce} className="click"><i  className="fas fa-minus"></i></span>
                                     }
                                     <span>{count}</span>
-                                    <span onClick={ClickAugment}  className="click"><i class="fas fa-plus"></i></span>
+                                    <span onClick={ClickAugment}  className="click"><i  className="fas fa-plus"></i></span>
                                 </div>
 
                                 <div className="boxAddCart" onClick={()=>Addcart(props.sp,count)}>

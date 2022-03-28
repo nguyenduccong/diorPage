@@ -43,12 +43,6 @@ function App() {
           <Cart changedBackground={navbar}></Cart>
         </Route>
 
-        {/* <Route exact path="/product">
-
-          <ListProduct changedBackground={navbar}></ListProduct>
-
-        </Route> */}
-
         <Route path="/product/:id">
           <Detail changedBackground={navbar}></Detail>
         </Route>

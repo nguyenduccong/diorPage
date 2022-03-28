@@ -26,7 +26,7 @@ const BoxCart =(props)=>{
             <OverPlayCart  onClick={props.handleClickCart}></OverPlayCart>
             <ContainerCart>
                 <div className="close" onClick={props.handleClickCart}>
-                    <i class="fal fa-times"></i>
+                    <i  className="fal fa-times"></i>
                 </div>
 
                 <ContentCart>
@@ -35,7 +35,7 @@ const BoxCart =(props)=>{
                             
                             <ItemCart>
                                 <div className="remove" >
-                                    <i class="fal fa-times" onClick={()=>remove(item.product.id)}></i>
+                                    <i  className="fal fa-times" onClick={()=>remove(item.product.id)}></i>
                                 </div>
 
                                 <div className="imgProduct">

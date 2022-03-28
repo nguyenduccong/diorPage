@@ -1,111 +1,55 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import Header from '../../../components/Header/Header';
-import GoogleLogin, { GoogleLogout } from 'react-google-login';
-import Footer from '../../../components/footer/footer';
 
 
 
-const Signin =(props)=>{
+const Signin = (props) => {
 
-    const [show, setshow] = useState(false);
-    const [showLogin,setShowLogin] = useState(false);
-    const [user, setuser] = useState(null)
+  const [show, setshow] = useState(false);
 
+  const toggleForm = () => {
+    setshow(!show)
+  }
 
-    const toggleForm=()=>{
-        setshow(!show)
-    }
+  return (
+    <BoxContent>
+      <Header narbar={props.changedBackground}></Header>
 
-    const responseGoogle = (response) => {
-      localStorage.setItem('user', JSON.stringify(response.profileObj));
-      console.log(response.profileObj);
-      window.location=`/`;
-      setShowLogin(true);
-    }
+      <section>
 
-    const Logout = () => {
-      localStorage.setItem('user', null);
-      window.location=`/`;
-      setShowLogin(false);
-    }
+        <div className={show ? "container active" : "container"}>
+          <div className="user signinBx">
+            <div className="imgBx"><img src="./images/home/signin.jpg" alt="" /></div>
+            <div className="formBx">
+              <form action>
+                <h2>Đăng Nhập</h2>
+                <input type="text" name id placeholder="Username" />
+                <input type="password" name id placeholder="Password" />
+                <button type="button">Đăng Nhập</button>
+                <p className="signup">Bạn Chưa Có Tài khoản? <span onClick={toggleForm}>Đăng Ký.</span></p>
+              </form>
+            </div>
+          </div>
 
-    useEffect(() => {
-      const storage = localStorage.getItem('user');
-
-      if(storage){
-          setuser(JSON.parse(storage))
-      }else{
-          localStorage.setItem('user', null);
-      }
-  },[])
-
-
-
-    return(
-        <BoxContent>
-            <Header narbar={props.changedBackground}></Header>
-
-            <section>
-              {user===null?
-                                <div className={show?"container active":"container"}>
-
-                                <div className="user signinBx">
-                                    <div className="imgBx"><img src="./images/home/signin.jpg" alt="" /></div>
-                                    <div className="formBx">
-                                    <form action>
-                                        <h2>Đăng Nhập</h2>
-                                        <input type="text" name id placeholder="Username" />
-                                        <input type="password" name id placeholder="Password" />
-                                        <button type="button">Đăng Nhập</button>
-                                        <p className="signup">Bạn Chưa Có Tài khoản? <span onClick={toggleForm}>Đăng Ký.</span></p>
-                                    </form>
-                                       
-                                        <GoogleLogin className="BtnLogin"
-                                        clientId="287127474844-d6cc3k4gkl9pj6ccd8euoirubdk9c8q0.apps.googleusercontent.com"
-                                        buttonText="Login"
-                                        onSuccess={responseGoogle}
-                                        onFailure={responseGoogle}
-                                        cookiePolicy={'single_host_origin'}
-                                      />     
-                                     
-                                    </div>
-                                </div>
-            
-                                <div className="user signupBx">
-                                    <div className="formBx">
-                                    <form action>
-                                        <h2>Tạo Tài Khoản</h2>
-                                        <input type="text" name id placeholder="Nhâp UserName" />
-                                        <input type="text" name id placeholder="Đia Chỉ Email" />
-                                        <input type="password" name id placeholder="Mật Khẩu" />
-                                        <input type="password" name id placeholder="Nhập lại Mật Khẩu" />
-                                        <button type="submit">Đăng Ký</button>
-                                        <p className="signup">Bạn Đã Có Tài Khoản ? <span onClick={toggleForm}>Đăng Nhập.</span></p>
-                                    </form>
-                                      <GoogleLogin className="BtnLogin"
-                                          clientId="287127474844-d6cc3k4gkl9pj6ccd8euoirubdk9c8q0.apps.googleusercontent.com"
-                                          buttonText="Login"
-                                          onSuccess={responseGoogle}
-                                          onFailure={responseGoogle}
-                                          cookiePolicy={'single_host_origin'}
-                                        />
-                                    </div>
-                                    <div className="imgBx"><img src="./images/home/signup.jpg" alt="" /></div>
-                                </div>
-                            </div>
-                            :
-                            <GoogleLogout
-                              clientId="287127474844-d6cc3k4gkl9pj6ccd8euoirubdk9c8q0.apps.googleusercontent.com"
-                              buttonText="Logout"
-                              onLogoutSuccess={Logout}>
-                            </GoogleLogout>
-
-              }
-            </section>
-        </BoxContent>
-    );
+          <div className="user signupBx">
+            <div className="formBx">
+              <form action>
+                <h2>Tạo Tài Khoản</h2>
+                <input type="text" name id placeholder="Nhâp UserName" />
+                <input type="text" name id placeholder="Đia Chỉ Email" />
+                <input type="password" name id placeholder="Mật Khẩu" />
+                <input type="password" name id placeholder="Nhập lại Mật Khẩu" />
+                <button type="submit">Đăng Ký</button>
+                <p className="signup">Bạn Đã Có Tài Khoản ? <span onClick={toggleForm}>Đăng Nhập.</span></p>
+              </form>
+            </div>
+            <div className="imgBx"><img src="./images/home/signup.jpg" alt="" /></div>
+          </div>
+        </div>
+      </section>
+    </BoxContent>
+  );
 }
 
 const BoxContent = styled.div`
