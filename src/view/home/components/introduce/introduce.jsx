@@ -36,7 +36,6 @@ const BoxContent = styled.section`
 
 const BoxTop = styled.div`
     width:100vw;
-    height:100vh;
     display:flex;
     margin-bottom: 200px;
 `
@@ -48,6 +47,10 @@ const Content = styled.div`
     align-items: flex-end;
     .boxtext{
         padding:0 7.5rem;
+
+        @media an screnn (max-width:1024px){
+            padding:0 1.5rem;
+        }
         
         h3{
             font-size: 30px;
@@ -62,7 +65,6 @@ const Content = styled.div`
 
     .boximg{
         width: 50%;
-        height: 100%;
         margin-right: 50px;
         transform: translateY(50px);
         overflow:hidden;
@@ -75,7 +77,6 @@ const Content = styled.div`
 
 const Images = styled.div`
     width: 55%;
-    height: 100vh;
     overflow:hidden;
 
     img:hover{

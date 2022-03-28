@@ -17,8 +17,6 @@ const Home =(props)=>{
     useEffect(() => {
         const fetchProductNew= async()=>{
             const res = await prouctApi.GetProductsNew()   
-            // const data = await res.data
-            // console.log(data)
             setProductNew(res)
         }
 
@@ -26,8 +24,6 @@ const Home =(props)=>{
 
         const fetchProductHot= async()=>{
             const res = await prouctApi.GetProductsHot()   
-            // const data = await res.data
-            // console.log(data)
             setProductHot(res)
         }
 
